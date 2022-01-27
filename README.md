@@ -1,2 +1,2 @@
-# randomsampler
+# RandomSampler
 Musicians Random File Selection.
