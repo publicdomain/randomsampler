@@ -84,7 +84,8 @@ namespace RandomSampler
         /// <param name="e">Event arguments.</param>
         private void OnThirtyTwoButtonClick(object sender, EventArgs e)
         {
-            // TODO Add code
+            // Set samples value
+            this.samplesNumericUpDown.Value = 32;
         }
 
         /// <summary>
