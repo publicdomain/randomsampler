@@ -62,7 +62,8 @@ namespace RandomSampler
         /// <param name="e">Event arguments.</param>
         private void OnEightButtonClick(object sender, EventArgs e)
         {
-            // TODO Add code
+            // Set samples value
+            this.samplesNumericUpDown.Value = 8;
         }
 
         /// <summary>
