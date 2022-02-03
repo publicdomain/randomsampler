@@ -11,6 +11,7 @@ namespace RandomSampler
     using System.Diagnostics;
     using System.Drawing;
     using System.IO;
+    using System.Reflection;
     using System.Windows.Forms;
     using System.Xml.Serialization;
     using PublicDomain;
@@ -21,12 +22,57 @@ namespace RandomSampler
     public partial class MainForm : Form
     {
         /// <summary>
+        /// Gets or sets the associated icon.
+        /// </summary>
+        /// <value>The associated icon.</value>
+        private Icon associatedIcon = null;
+
+        /// <summary>
+        /// The settings data.
+        /// </summary>
+        private SettingsData settingsData = null;
+
+        /// <summary>
+        /// The settings data path.
+        /// </summary>
+        private string settingsDataPath = $"{Application.ProductName}-SettingsData.txt";
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="T:RandomSampler.MainForm"/> class.
         /// </summary>
         public MainForm()
         {
             // The InitializeComponent() call is required for Windows Forms designer support.
             this.InitializeComponent();
+
+            // Set associated icon from exe file
+            this.associatedIcon = Icon.ExtractAssociatedIcon(typeof(MainForm).GetTypeInfo().Assembly.Location);
+
+            // Set PublicDomain.is tool strip menu item image
+            this.freeReleasesPublicDomainisToolStripMenuItem.Image = this.associatedIcon.ToBitmap();
+
+            /* Settings data */
+
+            // Check for settings file
+            if (!File.Exists(this.settingsDataPath))
+            {
+                // Create new settings file
+                this.SaveSettingsFile(this.settingsDataPath, new SettingsData());
+            }
+
+            // Load settings from disk
+            this.settingsData = this.LoadSettingsFile(this.settingsDataPath);
+
+            // Set GUI
+            this.alwaysOnTopToolStripMenuItem.Checked = this.settingsData.AlwaysOnTop;
+            this.addcheckedToolStripMenuItem.Checked = this.settingsData.AddChecked;
+            this.checkOnClickToolStripMenuItem.Checked = this.settingsData.CheckOnClick;
+            this.scanSubdirectoriesToolStripMenuItem.Checked = this.settingsData.ScanSubdirectories;
+            this.samplesNumericUpDown.Value = this.settingsData.Samples;
+            this.sequentialCheckBox.Checked = this.settingsData.SequentialSave;
+
+            // Set topmost
+            this.TopMost = this.settingsData.AlwaysOnTop;
         }
 
         /// <summary>

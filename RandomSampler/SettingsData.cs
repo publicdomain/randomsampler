@@ -47,20 +47,27 @@ namespace PublicDomain
         public bool ScanSubdirectories { get; set; } = true;
 
         /// <summary>
-        /// The file extensions list.
-        /// </summary>
-        public List<string> fileExtensionsList = new List<string>() { "wav", "flac", "ogg", "mp3" };
-
-        /// <summary>
         /// Gets or sets the samples.
         /// </summary>
         /// <value>The samples.</value>
-        public decimal samples { get; set; } = 16;
+        public decimal Samples { get; set; } = 16;
 
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="T:PublicDomain.SettingsData"/> sequential save.
         /// </summary>
         /// <value><c>true</c> if sequential save; otherwise, <c>false</c>.</value>
-        public bool sequentialSave { get; set; } = true;
+        public bool SequentialSave { get; set; } = true;
+
+        /// <summary>
+        /// Gets or sets the file extensions.
+        /// </summary>
+        /// <value>The file extensions.</value>
+        public string FileExtensions { get; set; } = "wav,flac,ogg,mp3";
+
+        /// <summary>
+        /// Gets or sets the samples directory.
+        /// </summary>
+        /// <value>The samples directory.</value>
+        public string samplesDirectory { get; set; } = string.Empty;
     }
 }
