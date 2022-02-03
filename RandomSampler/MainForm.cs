@@ -11,9 +11,12 @@ namespace RandomSampler
     using System.Diagnostics;
     using System.Drawing;
     using System.IO;
+    using System.Linq;
     using System.Reflection;
+    using System.Text.RegularExpressions;
     using System.Windows.Forms;
     using System.Xml.Serialization;
+    using Microsoft.VisualBasic;
     using PublicDomain;
 
     /// <summary>
@@ -197,7 +200,33 @@ namespace RandomSampler
         /// <param name="e">Event arguments.</param>
         private void OnOptionsToolStripMenuItemDropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            // TODO Add code
+            // Set clicked item
+            var clickedItem = (ToolStripMenuItem)e.ClickedItem;
+
+            // Set file extensions
+            if (clickedItem == this.setFileExtensionsToolStripMenuItem)
+            {
+                // TODO Prevent z-order [Can be made conditional]
+                this.TopMost = false;
+
+                // Set file extensions from user input
+                string fileExtensions = Interaction.InputBox("Enter samples' file extensions (comma-separated):", "Set file extensions", this.settingsData.FileExtensions);
+
+                // TODO Check it's not empty [Can have further / specialized checks]
+                if (fileExtensions.Length > 0)
+                {
+                    // Split by non alphanumeric characters
+                    this.settingsData.FileExtensions = string.Join(",", Regex.Split(fileExtensions.ToLower(), @"[^a-zA-Z0-9]").Where(s => s != String.Empty).ToArray<string>());
+                }
+            }
+            else
+            {
+                // Toggle checked
+                clickedItem.Checked = !clickedItem.Checked;
+
+                // TODO Set topmost [Can be tested for topmost menu item click]
+                this.TopMost = this.alwaysOnTopToolStripMenuItem.Checked;
+            }
         }
 
         /// <summary>
@@ -295,12 +324,12 @@ namespace RandomSampler
         private void OnMainFormFormClosing(object sender, FormClosingEventArgs e)
         {
             // Set GUI
-            this.alwaysOnTopToolStripMenuItem.Checked = this.settingsData.AlwaysOnTop;
-            this.addcheckedToolStripMenuItem.Checked = this.settingsData.AddChecked;
-            this.checkOnClickToolStripMenuItem.Checked = this.settingsData.CheckOnClick;
-            this.scanSubdirectoriesToolStripMenuItem.Checked = this.settingsData.ScanSubdirectories;
-            this.samplesNumericUpDown.Value = this.settingsData.Samples;
-            this.sequentialCheckBox.Checked = this.settingsData.SequentialSave;
+            this.settingsData.AlwaysOnTop = this.alwaysOnTopToolStripMenuItem.Checked;
+            this.settingsData.AddChecked = this.addcheckedToolStripMenuItem.Checked;
+            this.settingsData.CheckOnClick = this.checkOnClickToolStripMenuItem.Checked;
+            this.settingsData.ScanSubdirectories = this.scanSubdirectoriesToolStripMenuItem.Checked;
+            this.settingsData.Samples = this.samplesNumericUpDown.Value;
+            this.settingsData.SequentialSave = this.sequentialCheckBox.Checked;
 
             // Save settings data to disk
             this.SaveSettingsFile(this.settingsDataPath, this.settingsData);
