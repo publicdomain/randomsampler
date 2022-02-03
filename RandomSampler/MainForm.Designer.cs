@@ -286,7 +286,7 @@ namespace RandomSampler
             // 
             this.fileCountToolStripStatusLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.fileCountToolStripStatusLabel.Name = "fileCountToolStripStatusLabel";
-            this.fileCountToolStripStatusLabel.Size = new System.Drawing.Size(21, 17);
+            this.fileCountToolStripStatusLabel.Size = new System.Drawing.Size(14, 17);
             this.fileCountToolStripStatusLabel.Text = "0";
             // 
             // fileListViewContextMenuStrip
@@ -359,23 +359,6 @@ namespace RandomSampler
             this.randomItemsCheckedListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.randomItemsCheckedListBox.FormattingEnabled = true;
             this.randomItemsCheckedListBox.IntegralHeight = false;
-            this.randomItemsCheckedListBox.Items.AddRange(new object[] {
-            "Sample #1",
-            "Sample #2",
-            "Sample #3",
-            "Sample #4",
-            "Sample #5",
-            "Sample #6",
-            "Sample #7",
-            "Sample #8",
-            "Sample #9",
-            "Sample #10",
-            "Sample #11",
-            "Sample #12",
-            "Sample #13",
-            "Sample #14",
-            "Sample #15",
-            "Sample #16"});
             this.randomItemsCheckedListBox.Location = new System.Drawing.Point(3, 38);
             this.randomItemsCheckedListBox.Name = "randomItemsCheckedListBox";
             this.randomItemsCheckedListBox.Size = new System.Drawing.Size(313, 249);
@@ -583,6 +566,7 @@ namespace RandomSampler
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RandomSampler";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnMainFormFormClosing);
             this.mainMenuStrip.ResumeLayout(false);
             this.mainMenuStrip.PerformLayout();
             this.mainStatusStrip.ResumeLayout(false);

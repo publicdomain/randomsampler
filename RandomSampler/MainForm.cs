@@ -288,6 +288,25 @@ namespace RandomSampler
         }
 
         /// <summary>
+        /// Handles the main form form closing.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        private void OnMainFormFormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Set GUI
+            this.alwaysOnTopToolStripMenuItem.Checked = this.settingsData.AlwaysOnTop;
+            this.addcheckedToolStripMenuItem.Checked = this.settingsData.AddChecked;
+            this.checkOnClickToolStripMenuItem.Checked = this.settingsData.CheckOnClick;
+            this.scanSubdirectoriesToolStripMenuItem.Checked = this.settingsData.ScanSubdirectories;
+            this.samplesNumericUpDown.Value = this.settingsData.Samples;
+            this.sequentialCheckBox.Checked = this.settingsData.SequentialSave;
+
+            // Save settings data to disk
+            this.SaveSettingsFile(this.settingsDataPath, this.settingsData);
+        }
+
+        /// <summary>
         /// Handles the exit tool strip menu item click.
         /// </summary>
         /// <param name="sender">Sender object.</param>
