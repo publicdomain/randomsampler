@@ -41,6 +41,11 @@ namespace RandomSampler
         private string settingsDataPath = $"{Application.ProductName}-SettingsData.txt";
 
         /// <summary>
+        /// The samples path list.
+        /// </summary>
+        private List<string> samplesPathList = new List<string>();
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="T:RandomSampler.MainForm"/> class.
         /// </summary>
         public MainForm()
@@ -85,7 +90,20 @@ namespace RandomSampler
         /// <param name="e">Event arguments.</param>
         private void OnBrowseButtonClick(object sender, EventArgs e)
         {
-            // TODO Add code
+            // Set description
+            this.folderBrowserDialog.Description = "Set samples directory";
+
+            // Reset selected path
+            this.folderBrowserDialog.SelectedPath = string.Empty;
+
+            // Show folder browser dialog
+            if (this.folderBrowserDialog.ShowDialog() == DialogResult.OK && this.folderBrowserDialog.SelectedPath.Length > 0)
+            {
+                // Set samples directory
+                this.settingsData.samplesDirectory = this.folderBrowserDialog.SelectedPath;
+
+                // TODO Get samples
+            }
         }
 
         /// <summary>
