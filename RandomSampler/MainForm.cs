@@ -133,7 +133,7 @@ namespace RandomSampler
             for (int i = 0; i < Math.Min(this.samplesNumericUpDown.Value, this.samplesPathList.Count); i++)
             {
                 // TODO Check if list view items are complete to account for repeated samples requests [Can be made differently / more efficiently]
-                if (this.samplesListView.Items.Count == this.samplesNumericUpDown.Value)
+                if (this.samplesListView.Items.Count >= this.samplesNumericUpDown.Value)
                 {
                     // Halt flow
                     break;
@@ -183,7 +183,20 @@ namespace RandomSampler
         /// <param name="e">Event arguments.</param>
         private void OnDeleteButtonClick(object sender, EventArgs e)
         {
-            // TODO Add code
+            // Prevent drawing
+            this.samplesListView.BeginUpdate();
+
+            // Remove all selected items
+            while (this.samplesListView.SelectedItems.Count > 0)
+            {
+                this.samplesListView.Items.RemoveAt(this.samplesListView.SelectedIndices[0]);
+            }
+
+            // Resume drawing
+            this.samplesListView.EndUpdate();
+
+            // Update file count
+            this.fileCountToolStripStatusLabel.Text = this.samplesListView.Items.Count.ToString();
         }
 
         /// <summary>

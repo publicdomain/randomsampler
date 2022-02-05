@@ -8,10 +8,6 @@ namespace RandomSampler
         /// </summary>
         private System.ComponentModel.IContainer components = null;
         private System.Windows.Forms.MenuStrip mainMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
-        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem alwaysOnTopToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
@@ -51,6 +47,13 @@ namespace RandomSampler
         private System.Windows.Forms.ToolStripMenuItem scanSubdirectoriesToolStripMenuItem;
         private System.Windows.Forms.ListView samplesListView;
         private System.Windows.Forms.ColumnHeader samplesColumnHeader;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem1;
 
         /// <summary>
         /// Disposes resources used by the form.
@@ -78,10 +81,13 @@ namespace RandomSampler
         	this.components = new System.ComponentModel.Container();
         	System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
         	this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
-        	this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-        	this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-        	this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
-        	this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        	this.fileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+        	this.newToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+        	this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        	this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+        	this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        	this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+        	this.exitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
         	this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         	this.alwaysOnTopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         	this.addcheckedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -103,11 +109,6 @@ namespace RandomSampler
         	this.mainTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
         	this.browseButton = new System.Windows.Forms.Button();
         	this.getSamplesButton = new System.Windows.Forms.Button();
-        	this.randomItemsListContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-        	this.checkAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-        	this.uncheckAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-        	this.toggleCheckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-        	this.deleteAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         	this.saveButton = new System.Windows.Forms.Button();
         	this.sequentialCheckBox = new System.Windows.Forms.CheckBox();
         	this.previewButton = new System.Windows.Forms.Button();
@@ -121,19 +122,24 @@ namespace RandomSampler
         	this.sixtyFourButton = new System.Windows.Forms.Button();
         	this.samplesListView = new System.Windows.Forms.ListView();
         	this.samplesColumnHeader = new System.Windows.Forms.ColumnHeader();
+        	this.randomItemsListContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+        	this.checkAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        	this.uncheckAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        	this.toggleCheckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        	this.deleteAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         	this.mainMenuStrip.SuspendLayout();
         	this.mainStatusStrip.SuspendLayout();
         	this.fileListViewContextMenuStrip.SuspendLayout();
         	this.mainTableLayoutPanel.SuspendLayout();
-        	this.randomItemsListContextMenuStrip.SuspendLayout();
         	this.samplesTableLayoutPanel.SuspendLayout();
         	((System.ComponentModel.ISupportInitialize)(this.samplesNumericUpDown)).BeginInit();
+        	this.randomItemsListContextMenuStrip.SuspendLayout();
         	this.SuspendLayout();
         	// 
         	// mainMenuStrip
         	// 
         	this.mainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.fileToolStripMenuItem,
+			this.fileToolStripMenuItem1,
 			this.optionsToolStripMenuItem,
 			this.helpToolStripMenuItem});
         	this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
@@ -141,37 +147,65 @@ namespace RandomSampler
         	this.mainMenuStrip.Size = new System.Drawing.Size(319, 24);
         	this.mainMenuStrip.TabIndex = 47;
         	// 
-        	// fileToolStripMenuItem
+        	// fileToolStripMenuItem1
         	// 
-        	this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.newToolStripMenuItem,
-			this.toolStripSeparator,
-			this.exitToolStripMenuItem});
-        	this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-        	this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-        	this.fileToolStripMenuItem.Text = "&File";
+        	this.fileToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.newToolStripMenuItem1,
+			this.openToolStripMenuItem,
+			this.toolStripSeparator1,
+			this.saveToolStripMenuItem,
+			this.toolStripSeparator3,
+			this.exitToolStripMenuItem1});
+        	this.fileToolStripMenuItem1.Name = "fileToolStripMenuItem1";
+        	this.fileToolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
+        	this.fileToolStripMenuItem1.Text = "&File";
         	// 
-        	// newToolStripMenuItem
+        	// newToolStripMenuItem1
         	// 
-        	this.newToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripMenuItem.Image")));
-        	this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-        	this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-        	this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-        	this.newToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
-        	this.newToolStripMenuItem.Text = "&New";
-        	this.newToolStripMenuItem.Click += new System.EventHandler(this.OnNewToolStripMenuItemClick);
+        	this.newToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripMenuItem1.Image")));
+        	this.newToolStripMenuItem1.ImageTransparentColor = System.Drawing.Color.Magenta;
+        	this.newToolStripMenuItem1.Name = "newToolStripMenuItem1";
+        	this.newToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+        	this.newToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+        	this.newToolStripMenuItem1.Text = "&New";
+        	this.newToolStripMenuItem1.Click += new System.EventHandler(this.OnNewToolStripMenuItemClick);
         	// 
-        	// toolStripSeparator
+        	// openToolStripMenuItem
         	// 
-        	this.toolStripSeparator.Name = "toolStripSeparator";
-        	this.toolStripSeparator.Size = new System.Drawing.Size(138, 6);
+        	this.openToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripMenuItem.Image")));
+        	this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+        	this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+        	this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+        	this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+        	this.openToolStripMenuItem.Text = "&Open";
+        	this.openToolStripMenuItem.Click += new System.EventHandler(this.OnBrowseButtonClick);
         	// 
-        	// exitToolStripMenuItem
+        	// toolStripSeparator1
         	// 
-        	this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-        	this.exitToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
-        	this.exitToolStripMenuItem.Text = "E&xit";
-        	this.exitToolStripMenuItem.Click += new System.EventHandler(this.OnExitToolStripMenuItemClick);
+        	this.toolStripSeparator1.Name = "toolStripSeparator1";
+        	this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+        	// 
+        	// saveToolStripMenuItem
+        	// 
+        	this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
+        	this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+        	this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+        	this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+        	this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+        	this.saveToolStripMenuItem.Text = "&Save";
+        	this.saveToolStripMenuItem.Click += new System.EventHandler(this.OnSaveButtonClick);
+        	// 
+        	// toolStripSeparator3
+        	// 
+        	this.toolStripSeparator3.Name = "toolStripSeparator3";
+        	this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
+        	// 
+        	// exitToolStripMenuItem1
+        	// 
+        	this.exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
+        	this.exitToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+        	this.exitToolStripMenuItem1.Text = "E&xit";
+        	this.exitToolStripMenuItem1.Click += new System.EventHandler(this.OnExitToolStripMenuItemClick);
         	// 
         	// optionsToolStripMenuItem
         	// 
@@ -354,40 +388,6 @@ namespace RandomSampler
         	this.getSamplesButton.UseVisualStyleBackColor = true;
         	this.getSamplesButton.Click += new System.EventHandler(this.OnGetSamplesButtonClick);
         	// 
-        	// randomItemsListContextMenuStrip
-        	// 
-        	this.randomItemsListContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.checkAllToolStripMenuItem,
-			this.uncheckAllToolStripMenuItem,
-			this.toggleCheckToolStripMenuItem,
-			this.deleteAllToolStripMenuItem});
-        	this.randomItemsListContextMenuStrip.Name = "randomItemsListContextMenuStrip";
-        	this.randomItemsListContextMenuStrip.Size = new System.Drawing.Size(146, 92);
-        	// 
-        	// checkAllToolStripMenuItem
-        	// 
-        	this.checkAllToolStripMenuItem.Name = "checkAllToolStripMenuItem";
-        	this.checkAllToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
-        	this.checkAllToolStripMenuItem.Text = "&Check all";
-        	// 
-        	// uncheckAllToolStripMenuItem
-        	// 
-        	this.uncheckAllToolStripMenuItem.Name = "uncheckAllToolStripMenuItem";
-        	this.uncheckAllToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
-        	this.uncheckAllToolStripMenuItem.Text = "&Uncheck all";
-        	// 
-        	// toggleCheckToolStripMenuItem
-        	// 
-        	this.toggleCheckToolStripMenuItem.Name = "toggleCheckToolStripMenuItem";
-        	this.toggleCheckToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
-        	this.toggleCheckToolStripMenuItem.Text = "&Toggle check";
-        	// 
-        	// deleteAllToolStripMenuItem
-        	// 
-        	this.deleteAllToolStripMenuItem.Name = "deleteAllToolStripMenuItem";
-        	this.deleteAllToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
-        	this.deleteAllToolStripMenuItem.Text = "&Delete all";
-        	// 
         	// saveButton
         	// 
         	this.saveButton.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -563,6 +563,40 @@ namespace RandomSampler
         	this.samplesColumnHeader.Text = "Samples";
         	this.samplesColumnHeader.Width = 290;
         	// 
+        	// randomItemsListContextMenuStrip
+        	// 
+        	this.randomItemsListContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.checkAllToolStripMenuItem,
+			this.uncheckAllToolStripMenuItem,
+			this.toggleCheckToolStripMenuItem,
+			this.deleteAllToolStripMenuItem});
+        	this.randomItemsListContextMenuStrip.Name = "randomItemsListContextMenuStrip";
+        	this.randomItemsListContextMenuStrip.Size = new System.Drawing.Size(146, 92);
+        	// 
+        	// checkAllToolStripMenuItem
+        	// 
+        	this.checkAllToolStripMenuItem.Name = "checkAllToolStripMenuItem";
+        	this.checkAllToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+        	this.checkAllToolStripMenuItem.Text = "&Check all";
+        	// 
+        	// uncheckAllToolStripMenuItem
+        	// 
+        	this.uncheckAllToolStripMenuItem.Name = "uncheckAllToolStripMenuItem";
+        	this.uncheckAllToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+        	this.uncheckAllToolStripMenuItem.Text = "&Uncheck all";
+        	// 
+        	// toggleCheckToolStripMenuItem
+        	// 
+        	this.toggleCheckToolStripMenuItem.Name = "toggleCheckToolStripMenuItem";
+        	this.toggleCheckToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+        	this.toggleCheckToolStripMenuItem.Text = "&Toggle check";
+        	// 
+        	// deleteAllToolStripMenuItem
+        	// 
+        	this.deleteAllToolStripMenuItem.Name = "deleteAllToolStripMenuItem";
+        	this.deleteAllToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+        	this.deleteAllToolStripMenuItem.Text = "&Delete all";
+        	// 
         	// MainForm
         	// 
         	this.AcceptButton = this.getSamplesButton;
@@ -583,9 +617,9 @@ namespace RandomSampler
         	this.mainStatusStrip.PerformLayout();
         	this.fileListViewContextMenuStrip.ResumeLayout(false);
         	this.mainTableLayoutPanel.ResumeLayout(false);
-        	this.randomItemsListContextMenuStrip.ResumeLayout(false);
         	this.samplesTableLayoutPanel.ResumeLayout(false);
         	((System.ComponentModel.ISupportInitialize)(this.samplesNumericUpDown)).EndInit();
+        	this.randomItemsListContextMenuStrip.ResumeLayout(false);
         	this.ResumeLayout(false);
         	this.PerformLayout();
 
