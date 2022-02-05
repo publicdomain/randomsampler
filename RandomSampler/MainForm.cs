@@ -66,12 +66,8 @@ namespace RandomSampler
 
             /* Settings data */
 
-            // Check for settings file
-            if (!File.Exists(this.settingsDataPath))
-            {
-                // Populate GUI with new settings
-                this.SettingsToGui(true);
-            }
+            // Populate GUI with settings, with new or existing 
+            this.SettingsToGui(!File.Exists(this.settingsDataPath));
         }
 
         /// <summary>
@@ -295,7 +291,12 @@ namespace RandomSampler
         /// <param name="e">Event arguments.</param>
         private void OnNewToolStripMenuItemClick(object sender, EventArgs e)
         {
-            // TODO Add code
+            // Ask user for resetting settings data
+            if (MessageBox.Show("Reset all settings afresh?", "New settings data", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                // Generate new settings and use them for GUI
+                this.SettingsToGui(true);
+            }
         }
 
         /// <summary>
