@@ -46,6 +46,11 @@ namespace RandomSampler
         private List<string> samplesPathList = new List<string>();
 
         /// <summary>
+        /// The random.
+        /// </summary>
+        private Random random = new Random();
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="T:RandomSampler.MainForm"/> class.
         /// </summary>
         public MainForm()
@@ -125,9 +130,14 @@ namespace RandomSampler
         /// </summary>
         private void GetSamples()
         {
-            // TODO Populate file list [Might want to check for files prior to populate & enabling buttons]
-            foreach (string file in this.samplesPathList)
+            for (int i = 0; i < Math.Min(this.samplesNumericUpDown.Value, this.samplesPathList.Count); i++)
             {
+                // Set random sample file index
+                int index = random.Next(0, this.samplesPathList.Count);
+
+                // Set current random sample file path
+                string file = this.samplesPathList[index];
+
                 // Set item to file name 
                 ListViewItem item = new ListViewItem(Path.GetFileName(file))
                 {
@@ -137,6 +147,16 @@ namespace RandomSampler
 
                 // Add item to list 
                 this.samplesListView.Items.Add(item);
+
+                // Remove file from path list
+                this.samplesPathList.RemoveAt(index);
+
+                // TODO Check if list view items are complete to account for repeated samples requests [Can be made differently / more efficiently]
+                if (this.samplesListView.Items.Count == this.samplesNumericUpDown.Value)
+                {
+                    // Halt flow
+                    break;
+                }
             }
 
             // Set column width
