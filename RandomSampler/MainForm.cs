@@ -91,7 +91,7 @@ namespace RandomSampler
             this.checkOnClickToolStripMenuItem.Checked = this.settingsData.CheckOnClick;
             this.scanSubdirectoriesToolStripMenuItem.Checked = this.settingsData.ScanSubdirectories;
             this.samplesNumericUpDown.Value = this.settingsData.Samples;
-            this.sequentialCheckBox.Checked = this.settingsData.SequentialSave;
+            this.sequentialSaveCheckBox.Checked = this.settingsData.SequentialSave;
 
             // Set topmost
             this.TopMost = this.settingsData.AlwaysOnTop;
@@ -182,8 +182,9 @@ namespace RandomSampler
             // Set column width
             this.samplesListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 
-            // Update file count
-            this.fileCountToolStripStatusLabel.Text = this.samplesListView.Items.Count.ToString();
+            // Update samples count
+            this.samplesCountToolStripStatusLabel.Text = this.samplesListView.Items.Count.ToString();
+            this.eligibleSamplesCountToolStripStatusLabel.Text = this.samplesPathList.Count.ToString();
         }
 
         /// <summary>
@@ -224,8 +225,8 @@ namespace RandomSampler
             // Resume drawing
             this.samplesListView.EndUpdate();
 
-            // Update file count
-            this.fileCountToolStripStatusLabel.Text = this.samplesListView.Items.Count.ToString();
+            // Update samples count
+            this.samplesCountToolStripStatusLabel.Text = this.samplesListView.Items.Count.ToString();
         }
 
         /// <summary>
@@ -455,7 +456,7 @@ namespace RandomSampler
             this.settingsData.CheckOnClick = this.checkOnClickToolStripMenuItem.Checked;
             this.settingsData.ScanSubdirectories = this.scanSubdirectoriesToolStripMenuItem.Checked;
             this.settingsData.Samples = this.samplesNumericUpDown.Value;
-            this.settingsData.SequentialSave = this.sequentialCheckBox.Checked;
+            this.settingsData.SequentialSave = this.sequentialSaveCheckBox.Checked;
 
             // Save settings data to disk
             this.SaveSettingsFile(this.settingsDataPath, this.settingsData);

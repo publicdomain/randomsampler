@@ -17,8 +17,8 @@ namespace RandomSampler
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.StatusStrip mainStatusStrip;
-        private System.Windows.Forms.ToolStripStatusLabel loadedFilesToolStripStatusLabel;
-        private System.Windows.Forms.ToolStripStatusLabel fileCountToolStripStatusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel samplesInLIstToolStripStatusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel samplesCountToolStripStatusLabel;
         private System.Windows.Forms.ContextMenuStrip fileListViewContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
@@ -26,7 +26,7 @@ namespace RandomSampler
         private System.Windows.Forms.Button browseButton;
         private System.Windows.Forms.Button getSamplesButton;
         private System.Windows.Forms.Button saveButton;
-        private System.Windows.Forms.CheckBox sequentialCheckBox;
+        private System.Windows.Forms.CheckBox sequentialSaveCheckBox;
         private System.Windows.Forms.Button previewButton;
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.TableLayoutPanel samplesTableLayoutPanel;
@@ -54,6 +54,8 @@ namespace RandomSampler
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripStatusLabel eligibleSamplesToolStripStatusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel eligibleSamplesCountToolStripStatusLabel;
 
         /// <summary>
         /// Disposes resources used by the form.
@@ -101,8 +103,8 @@ namespace RandomSampler
         	this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
         	this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         	this.mainStatusStrip = new System.Windows.Forms.StatusStrip();
-        	this.loadedFilesToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-        	this.fileCountToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+        	this.samplesInLIstToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+        	this.samplesCountToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
         	this.fileListViewContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
         	this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         	this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
@@ -110,7 +112,7 @@ namespace RandomSampler
         	this.browseButton = new System.Windows.Forms.Button();
         	this.getSamplesButton = new System.Windows.Forms.Button();
         	this.saveButton = new System.Windows.Forms.Button();
-        	this.sequentialCheckBox = new System.Windows.Forms.CheckBox();
+        	this.sequentialSaveCheckBox = new System.Windows.Forms.CheckBox();
         	this.previewButton = new System.Windows.Forms.Button();
         	this.deleteButton = new System.Windows.Forms.Button();
         	this.samplesTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -127,6 +129,8 @@ namespace RandomSampler
         	this.uncheckAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         	this.toggleCheckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         	this.deleteAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        	this.eligibleSamplesToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+        	this.eligibleSamplesCountToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
         	this.mainMenuStrip.SuspendLayout();
         	this.mainStatusStrip.SuspendLayout();
         	this.fileListViewContextMenuStrip.SuspendLayout();
@@ -166,7 +170,7 @@ namespace RandomSampler
         	this.newToolStripMenuItem1.ImageTransparentColor = System.Drawing.Color.Magenta;
         	this.newToolStripMenuItem1.Name = "newToolStripMenuItem1";
         	this.newToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-        	this.newToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+        	this.newToolStripMenuItem1.Size = new System.Drawing.Size(146, 22);
         	this.newToolStripMenuItem1.Text = "&New";
         	this.newToolStripMenuItem1.Click += new System.EventHandler(this.OnNewToolStripMenuItemClick);
         	// 
@@ -176,14 +180,14 @@ namespace RandomSampler
         	this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
         	this.openToolStripMenuItem.Name = "openToolStripMenuItem";
         	this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-        	this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+        	this.openToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
         	this.openToolStripMenuItem.Text = "&Open";
         	this.openToolStripMenuItem.Click += new System.EventHandler(this.OnBrowseButtonClick);
         	// 
         	// toolStripSeparator1
         	// 
         	this.toolStripSeparator1.Name = "toolStripSeparator1";
-        	this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+        	this.toolStripSeparator1.Size = new System.Drawing.Size(143, 6);
         	// 
         	// saveToolStripMenuItem
         	// 
@@ -191,19 +195,19 @@ namespace RandomSampler
         	this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
         	this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
         	this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-        	this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+        	this.saveToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
         	this.saveToolStripMenuItem.Text = "&Save";
         	this.saveToolStripMenuItem.Click += new System.EventHandler(this.OnSaveButtonClick);
         	// 
         	// toolStripSeparator3
         	// 
         	this.toolStripSeparator3.Name = "toolStripSeparator3";
-        	this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
+        	this.toolStripSeparator3.Size = new System.Drawing.Size(143, 6);
         	// 
         	// exitToolStripMenuItem1
         	// 
         	this.exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
-        	this.exitToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+        	this.exitToolStripMenuItem1.Size = new System.Drawing.Size(146, 22);
         	this.exitToolStripMenuItem1.Text = "E&xit";
         	this.exitToolStripMenuItem1.Click += new System.EventHandler(this.OnExitToolStripMenuItemClick);
         	// 
@@ -304,26 +308,28 @@ namespace RandomSampler
         	// mainStatusStrip
         	// 
         	this.mainStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.loadedFilesToolStripStatusLabel,
-			this.fileCountToolStripStatusLabel});
+			this.samplesInLIstToolStripStatusLabel,
+			this.samplesCountToolStripStatusLabel,
+			this.eligibleSamplesToolStripStatusLabel,
+			this.eligibleSamplesCountToolStripStatusLabel});
         	this.mainStatusStrip.Location = new System.Drawing.Point(0, 419);
         	this.mainStatusStrip.Name = "mainStatusStrip";
         	this.mainStatusStrip.Size = new System.Drawing.Size(319, 22);
         	this.mainStatusStrip.SizingGrip = false;
         	this.mainStatusStrip.TabIndex = 46;
         	// 
-        	// loadedFilesToolStripStatusLabel
+        	// samplesInLIstToolStripStatusLabel
         	// 
-        	this.loadedFilesToolStripStatusLabel.Name = "loadedFilesToolStripStatusLabel";
-        	this.loadedFilesToolStripStatusLabel.Size = new System.Drawing.Size(64, 17);
-        	this.loadedFilesToolStripStatusLabel.Text = "Files in list:";
+        	this.samplesInLIstToolStripStatusLabel.Name = "samplesInLIstToolStripStatusLabel";
+        	this.samplesInLIstToolStripStatusLabel.Size = new System.Drawing.Size(85, 17);
+        	this.samplesInLIstToolStripStatusLabel.Text = "Samples in list:";
         	// 
-        	// fileCountToolStripStatusLabel
+        	// samplesCountToolStripStatusLabel
         	// 
-        	this.fileCountToolStripStatusLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-        	this.fileCountToolStripStatusLabel.Name = "fileCountToolStripStatusLabel";
-        	this.fileCountToolStripStatusLabel.Size = new System.Drawing.Size(14, 17);
-        	this.fileCountToolStripStatusLabel.Text = "0";
+        	this.samplesCountToolStripStatusLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+        	this.samplesCountToolStripStatusLabel.Name = "samplesCountToolStripStatusLabel";
+        	this.samplesCountToolStripStatusLabel.Size = new System.Drawing.Size(14, 17);
+        	this.samplesCountToolStripStatusLabel.Text = "0";
         	// 
         	// fileListViewContextMenuStrip
         	// 
@@ -346,7 +352,7 @@ namespace RandomSampler
         	this.mainTableLayoutPanel.Controls.Add(this.browseButton, 0, 0);
         	this.mainTableLayoutPanel.Controls.Add(this.getSamplesButton, 0, 4);
         	this.mainTableLayoutPanel.Controls.Add(this.saveButton, 1, 4);
-        	this.mainTableLayoutPanel.Controls.Add(this.sequentialCheckBox, 1, 3);
+        	this.mainTableLayoutPanel.Controls.Add(this.sequentialSaveCheckBox, 1, 3);
         	this.mainTableLayoutPanel.Controls.Add(this.previewButton, 0, 2);
         	this.mainTableLayoutPanel.Controls.Add(this.deleteButton, 1, 2);
         	this.mainTableLayoutPanel.Controls.Add(this.samplesTableLayoutPanel, 0, 3);
@@ -400,21 +406,21 @@ namespace RandomSampler
         	this.saveButton.UseVisualStyleBackColor = true;
         	this.saveButton.Click += new System.EventHandler(this.OnSaveButtonClick);
         	// 
-        	// sequentialCheckBox
+        	// sequentialSaveCheckBox
         	// 
-        	this.sequentialCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
-        	this.sequentialCheckBox.Checked = true;
-        	this.sequentialCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-        	this.sequentialCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
-        	this.sequentialCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-        	this.sequentialCheckBox.Location = new System.Drawing.Point(237, 325);
-        	this.sequentialCheckBox.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-        	this.sequentialCheckBox.Name = "sequentialCheckBox";
-        	this.sequentialCheckBox.Size = new System.Drawing.Size(79, 30);
-        	this.sequentialCheckBox.TabIndex = 4;
-        	this.sequentialCheckBox.Text = "Seq.";
-        	this.sequentialCheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-        	this.sequentialCheckBox.UseVisualStyleBackColor = true;
+        	this.sequentialSaveCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
+        	this.sequentialSaveCheckBox.Checked = true;
+        	this.sequentialSaveCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+        	this.sequentialSaveCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
+        	this.sequentialSaveCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+        	this.sequentialSaveCheckBox.Location = new System.Drawing.Point(237, 325);
+        	this.sequentialSaveCheckBox.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+        	this.sequentialSaveCheckBox.Name = "sequentialSaveCheckBox";
+        	this.sequentialSaveCheckBox.Size = new System.Drawing.Size(79, 30);
+        	this.sequentialSaveCheckBox.TabIndex = 4;
+        	this.sequentialSaveCheckBox.Text = "Seq.";
+        	this.sequentialSaveCheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+        	this.sequentialSaveCheckBox.UseVisualStyleBackColor = true;
         	// 
         	// previewButton
         	// 
@@ -596,6 +602,19 @@ namespace RandomSampler
         	this.deleteAllToolStripMenuItem.Name = "deleteAllToolStripMenuItem";
         	this.deleteAllToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
         	this.deleteAllToolStripMenuItem.Text = "&Delete all";
+        	// 
+        	// eligibleSamplesToolStripStatusLabel
+        	// 
+        	this.eligibleSamplesToolStripStatusLabel.Name = "eligibleSamplesToolStripStatusLabel";
+        	this.eligibleSamplesToolStripStatusLabel.Size = new System.Drawing.Size(94, 17);
+        	this.eligibleSamplesToolStripStatusLabel.Text = "Eligible samples:";
+        	// 
+        	// eligibleSamplesCountToolStripStatusLabel
+        	// 
+        	this.eligibleSamplesCountToolStripStatusLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+        	this.eligibleSamplesCountToolStripStatusLabel.Name = "eligibleSamplesCountToolStripStatusLabel";
+        	this.eligibleSamplesCountToolStripStatusLabel.Size = new System.Drawing.Size(14, 17);
+        	this.eligibleSamplesCountToolStripStatusLabel.Text = "0";
         	// 
         	// MainForm
         	// 
