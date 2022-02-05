@@ -132,6 +132,13 @@ namespace RandomSampler
         {
             for (int i = 0; i < Math.Min(this.samplesNumericUpDown.Value, this.samplesPathList.Count); i++)
             {
+                // TODO Check if list view items are complete to account for repeated samples requests [Can be made differently / more efficiently]
+                if (this.samplesListView.Items.Count == this.samplesNumericUpDown.Value)
+                {
+                    // Halt flow
+                    break;
+                }
+
                 // Set random sample file index
                 int index = random.Next(0, this.samplesPathList.Count);
 
@@ -150,13 +157,6 @@ namespace RandomSampler
 
                 // Remove file from path list
                 this.samplesPathList.RemoveAt(index);
-
-                // TODO Check if list view items are complete to account for repeated samples requests [Can be made differently / more efficiently]
-                if (this.samplesListView.Items.Count == this.samplesNumericUpDown.Value)
-                {
-                    // Halt flow
-                    break;
-                }
             }
 
             // Set column width
@@ -248,7 +248,8 @@ namespace RandomSampler
         /// <param name="e">Event arguments.</param>
         private void OnGetSamplesButtonClick(object sender, EventArgs e)
         {
-            // TODO Add code
+            // Trigger get samples
+            this.GetSamples();
         }
 
         /// <summary>
