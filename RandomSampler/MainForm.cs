@@ -69,6 +69,19 @@ namespace RandomSampler
             // Check for settings file
             if (!File.Exists(this.settingsDataPath))
             {
+                // Populate GUI with new settings
+                this.SettingsToGui(true);
+            }
+        }
+
+        /// <summary>
+        /// Settingses to GUI.
+        /// </summary>
+        private void SettingsToGui(bool newSettings)
+        {
+            // Check for new settings
+            if (newSettings)
+            {
                 // Create new settings file
                 this.SaveSettingsFile(this.settingsDataPath, new SettingsData());
             }
