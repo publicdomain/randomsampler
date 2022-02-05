@@ -139,15 +139,19 @@ namespace RandomSampler
         /// </summary>
         private void GetSamples()
         {
-            for (int i = 0; i < Math.Min(this.samplesNumericUpDown.Value, this.samplesPathList.Count); i++)
+            // Check for samples
+            if (this.samplesPathList.Count == 0)
             {
-                // TODO Check if list view items are complete to account for repeated samples requests [Can be made differently / more efficiently]
-                if (this.samplesListView.Items.Count >= this.samplesNumericUpDown.Value)
-                {
-                    // Halt flow
-                    break;
-                }
+                // Advise user
+                MessageBox.Show("No samples in path list.", "Get samples", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
+                // Halt flow
+                return;
+            }
+
+            // Populate samples list view
+            while (this.samplesListView.Items.Count < this.samplesNumericUpDown.Value)
+            {
                 // Set random sample file index
                 int index = random.Next(0, this.samplesPathList.Count);
 
@@ -166,6 +170,13 @@ namespace RandomSampler
 
                 // Remove file from path list
                 this.samplesPathList.RemoveAt(index);
+
+                // Check for viable samples amount
+                if (this.samplesPathList.Count == 0)
+                {
+                    // Halt flow
+                    break;
+                }
             }
 
             // Set column width
@@ -182,7 +193,16 @@ namespace RandomSampler
         /// <param name="e">Event arguments.</param>
         private void OnPreviewButtonClick(object sender, EventArgs e)
         {
-            // TODO Add code
+            // Check for something selected
+            if (this.samplesListView.SelectedItems.Count > 0)
+            {
+                // Launch selected item(s)
+                foreach (ListViewItem item in this.samplesListView.SelectedItems)
+                {
+                    // Launch current one
+                    Process.Start(item.Tag.ToString());
+                }
+            }
         }
 
         /// <summary>
