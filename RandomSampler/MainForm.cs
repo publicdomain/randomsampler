@@ -99,11 +99,51 @@ namespace RandomSampler
             // Show folder browser dialog
             if (this.folderBrowserDialog.ShowDialog() == DialogResult.OK && this.folderBrowserDialog.SelectedPath.Length > 0)
             {
+                // Clear lists
+                this.samplesListView.Items.Clear();
+
+                // Populate samples path list
+                foreach (var fileExtension in this.settingsData.FileExtensions.Split(','))
+                {
+                    foreach (string file in Directory.GetFiles(this.folderBrowserDialog.SelectedPath, $"*.{fileExtension}", this.scanSubdirectoriesToolStripMenuItem.Checked ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly))
+                    {
+                        // Add current file
+                        this.samplesPathList.Add(file);
+                    }
+                }
+
                 // Set samples directory
                 this.settingsData.samplesDirectory = this.folderBrowserDialog.SelectedPath;
 
-                // TODO Get samples
+                // Get samples
+                this.GetSamples();
             }
+        }
+
+        /// <summary>
+        /// Gets the samples.
+        /// </summary>
+        private void GetSamples()
+        {
+            // TODO Populate file list [Might want to check for files prior to populate & enabling buttons]
+            foreach (string file in this.samplesPathList)
+            {
+                // Set item to file name 
+                ListViewItem item = new ListViewItem(Path.GetFileName(file))
+                {
+                    // Store full path as tag
+                    Tag = file
+                };
+
+                // Add item to list 
+                this.samplesListView.Items.Add(item);
+            }
+
+            // Set column width
+            this.samplesListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+
+            // Update file count
+            this.fileCountToolStripStatusLabel.Text = this.samplesListView.Items.Count.ToString();
         }
 
         /// <summary>
@@ -222,7 +262,7 @@ namespace RandomSampler
             var clickedItem = (ToolStripMenuItem)e.ClickedItem;
 
             // Set file extensions
-            if (clickedItem == this.setFileExtensionsToolStripMenuItem)
+            if (clickedItem.Name == "setFileExtensionsToolStripMenuItem")
             {
                 // TODO Prevent z-order [Can be made conditional]
                 this.TopMost = false;
