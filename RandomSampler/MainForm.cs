@@ -51,6 +51,11 @@ namespace RandomSampler
         private Random random = new Random();
 
         /// <summary>
+        /// The current directory.
+        /// </summary>
+        private string currentDirectory = Application.StartupPath;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="T:RandomSampler.MainForm"/> class.
         /// </summary>
         public MainForm()
@@ -302,7 +307,74 @@ namespace RandomSampler
         /// <param name="e">Event arguments.</param>
         private void OnSaveButtonClick(object sender, EventArgs e)
         {
-            // TODO Add code
+            // Check for checked files
+            if (this.samplesListView.CheckedItems.Count == 0)
+            {
+                // Advise user
+                MessageBox.Show("No checked samples to save.", "No files", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Halt flow    
+                return;
+            }
+
+            try
+            {
+                // Check for sequential save
+                if (this.sequentialSaveCheckBox.Checked)
+                {
+                    // Set directory info
+                    var directoryInfo = new DirectoryInfo(this.currentDirectory);
+
+                    // Try to parse as int
+                    int firstDirectoryDescInt = 0;
+
+                    // Check for subdirectories
+                    if (directoryInfo.GetDirectories().Length > 0)
+                    {
+                        // Determine the highest
+                        string firstDirectoryDesc = new DirectoryInfo(this.currentDirectory)
+                        .GetDirectories()
+                        .OrderByDescending(d => d.Name)
+                        .FirstOrDefault()
+                        .ToString();
+
+                        int.TryParse(Path.GetFileNameWithoutExtension(firstDirectoryDesc), out firstDirectoryDescInt);
+                    }
+
+                    string targetDirectory = Path.Combine(this.currentDirectory, (firstDirectoryDescInt + 1).ToString());
+
+                    Directory.CreateDirectory(targetDirectory);
+
+                    foreach (ListViewItem item in this.samplesListView.CheckedItems)
+                    {
+                        // Save to target directory
+                        File.Copy(item.Tag.ToString(), Path.Combine(targetDirectory, Path.GetFileName(item.Tag.ToString())));
+                    }
+                }
+                else
+                {
+                    // Set description
+                    this.folderBrowserDialog.Description = "Save samples to directory";
+
+                    // Reset selected path
+                    this.folderBrowserDialog.SelectedPath = string.Empty;
+
+                    // Show folder browser dialog
+                    if (this.folderBrowserDialog.ShowDialog() == DialogResult.OK && this.folderBrowserDialog.SelectedPath.Length > 0)
+                    {
+                        foreach (ListViewItem item in this.samplesListView.CheckedItems)
+                        {
+                            // Save to selected directory
+                            File.Copy(item.Tag.ToString(), Path.Combine(this.folderBrowserDialog.SelectedPath, Path.GetFileName(item.Tag.ToString())));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Advise user
+                MessageBox.Show(ex.Message, "Sequential save error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>
