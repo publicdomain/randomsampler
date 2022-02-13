@@ -140,6 +140,87 @@ namespace RandomSampler
         }
 
         /// <summary>
+        /// Handles the saveall tool strip menu item click.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        private void OnSaveallToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            // TODO Add code
+        }
+
+        /// <summary>
+        /// Handles the samples list view context menu strip item clicked.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        private void OnSamplesListViewContextMenuStripItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            // Set clicked item
+            var clickedItem = (ToolStripMenuItem)e.ClickedItem;
+
+            // Pause drawing
+            this.samplesListView.BeginUpdate();
+
+            // Switch clicked item for action
+            switch (clickedItem.Name)
+            {
+                // Check all
+                case "checkAllToolStripMenuItem":
+
+                    foreach (ListViewItem item in this.samplesListView.Items)
+                    {
+                        item.Checked = true;
+                    }
+
+                    break;
+
+                // Uncheck all
+                case "uncheckAllToolStripMenuItem":
+
+                    foreach (ListViewItem item in this.samplesListView.Items)
+                    {
+                        item.Checked = false;
+                    }
+
+                    break;
+
+                // Toggle
+                case "toggleCheckToolStripMenuItem":
+
+                    foreach (ListViewItem item in this.samplesListView.Items)
+                    {
+                        item.Checked = !item.Checked;
+                    }
+
+                    break;
+
+                // Delete selected
+                case "deleteToolStripMenuItem":
+
+                    while (this.samplesListView.SelectedIndices.Count > 0)
+                    {
+                        this.samplesListView.Items.RemoveAt(this.samplesListView.SelectedIndices[0]);
+                    }
+
+                    break;
+            }
+
+            // Resume drawing
+            this.samplesListView.EndUpdate();
+        }
+
+        /// <summary>
+        /// Handles the delete tool strip menu item drop down item clicked.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        private void OnDeleteToolStripMenuItemDropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            // TODO Add code
+        }
+
+        /// <summary>
         /// Gets the samples.
         /// </summary>
         private void GetSamples()
