@@ -113,7 +113,7 @@ namespace RandomSampler
             this.folderBrowserDialog.Description = "Set samples directory";
 
             // Reset selected path
-            this.folderBrowserDialog.SelectedPath = string.Empty;
+            this.folderBrowserDialog.SelectedPath = currentDirectory;
 
             // Show folder browser dialog
             if (this.folderBrowserDialog.ShowDialog() == DialogResult.OK && this.folderBrowserDialog.SelectedPath.Length > 0)
