@@ -648,7 +648,7 @@ namespace RandomSampler
             var aboutForm = new AboutForm(
                 $"About {programTitle}",
                 $"{programTitle} {version.Major}.{version.Minor}.{version.Build}",
-                $"Made for: Beth UK{Environment.NewLine}DonationCoder.com{Environment.NewLine}Day #37, Week #05 @ February 06, 2022",
+                $"Made for: Beth UK{Environment.NewLine}DonationCoder.com{Environment.NewLine}Day #44, Week #06 @ February 13, 2022",
                 licenseText,
                 this.Icon.ToBitmap())
             {
