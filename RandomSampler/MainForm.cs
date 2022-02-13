@@ -146,7 +146,14 @@ namespace RandomSampler
         /// <param name="e">Event arguments.</param>
         private void OnSaveallToolStripMenuItemClick(object sender, EventArgs e)
         {
-            // TODO Add code
+            // Check all
+            foreach (ListViewItem item in this.samplesListView.Items)
+            {
+                item.Checked = true;
+            }
+
+            // Save
+            this.saveButton.PerformClick();
         }
 
         /// <summary>
@@ -208,6 +215,9 @@ namespace RandomSampler
 
             // Resume drawing
             this.samplesListView.EndUpdate();
+
+            // Update samples count
+            this.samplesCountToolStripStatusLabel.Text = this.samplesListView.Items.Count.ToString();
         }
 
         /// <summary>
@@ -268,6 +278,9 @@ namespace RandomSampler
 
             // Resume drawing
             this.samplesListView.EndUpdate();
+
+            // Update samples count
+            this.samplesCountToolStripStatusLabel.Text = this.samplesListView.Items.Count.ToString();
         }
 
         /// <summary>
@@ -427,6 +440,9 @@ namespace RandomSampler
         /// <param name="e">Event arguments.</param>
         private void OnGetSamplesButtonClick(object sender, EventArgs e)
         {
+            // Clear lists
+            this.samplesListView.Items.Clear();
+
             // Trigger get samples
             this.GetSamples();
         }
