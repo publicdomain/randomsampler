@@ -217,7 +217,57 @@ namespace RandomSampler
         /// <param name="e">Event arguments.</param>
         private void OnDeleteToolStripMenuItemDropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            // TODO Add code
+            // Set clicked item
+            var clickedItem = (ToolStripMenuItem)e.ClickedItem;
+
+            // Pause drawing
+            this.samplesListView.BeginUpdate();
+
+            // Switch clicked item for action
+            switch (clickedItem.Name)
+            {
+                // Delete checked
+                case "checkedToolStripMenuItem":
+
+                    if (this.samplesListView.CheckedItems.Count > 0)
+                    {
+                        for (int i = this.samplesListView.Items.Count - 1; i >= 0; i--)
+                        {
+                            if (this.samplesListView.Items[i].Checked)
+                            {
+                                this.samplesListView.Items.RemoveAt(i);
+                            }
+                        }
+                    }
+
+                    break;
+
+                // Delete unchecked
+                case "uncheckedToolStripMenuItem":
+
+                    if (this.samplesListView.CheckedItems.Count < this.samplesListView.Items.Count)
+                    {
+                        for (int i = this.samplesListView.Items.Count - 1; i >= 0; i--)
+                        {
+                            if (!this.samplesListView.Items[i].Checked)
+                            {
+                                this.samplesListView.Items.RemoveAt(i);
+                            }
+                        }
+                    }
+
+                    break;
+
+                // Delete all items
+                case "allItemsToolStripMenuItem":
+
+                    this.samplesListView.Items.Clear();
+
+                    break;
+            }
+
+            // Resume drawing
+            this.samplesListView.EndUpdate();
         }
 
         /// <summary>
