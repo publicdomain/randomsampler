@@ -839,10 +839,28 @@ namespace RandomSampler
             this.TopMost = this.settingsData.AlwaysOnTop;
 
             // Load last folder
-            if (this.settingsData.LoadLastDirectoryOnStart)
+            if (this.settingsData.LoadLastDirectoryOnStart && this.settingsData.SamplesDirectory.Length > 0 && Directory.Exists(this.settingsData.SamplesDirectory))
             {
                 // Load directory samples
                 this.LoadDirectorySamples(this.settingsData.SamplesDirectory);
+            }
+        }
+
+        /// <summary>
+        /// Handles the samples list view mouse click.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        private void OnSamplesListViewMouseClick(object sender, MouseEventArgs e)
+        {
+            if (this.checkOnClickToolStripMenuItem.Checked)
+            {
+                var testInfo = this.samplesListView.HitTest(e.Location);
+
+                if (testInfo.Location == ListViewHitTestLocations.Label)
+                {
+                    testInfo.Item.Checked = !testInfo.Item.Checked;
+                }
             }
         }
 

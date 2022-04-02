@@ -597,6 +597,7 @@ namespace RandomSampler
             this.samplesListView.UseCompatibleStateImageBehavior = false;
             this.samplesListView.View = System.Windows.Forms.View.Details;
             this.samplesListView.SelectedIndexChanged += new System.EventHandler(this.OnSamplesListViewSelectedIndexChanged);
+            this.samplesListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.OnSamplesListViewMouseClick);
             // 
             // samplesColumnHeader
             // 
