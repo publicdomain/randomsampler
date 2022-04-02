@@ -118,25 +118,35 @@ namespace RandomSampler
             // Show folder browser dialog
             if (this.folderBrowserDialog.ShowDialog() == DialogResult.OK && this.folderBrowserDialog.SelectedPath.Length > 0)
             {
-                // Clear lists
-                this.samplesListView.Items.Clear();
-
-                // Populate samples path list
-                foreach (var fileExtension in this.settingsData.FileExtensions.Split(','))
-                {
-                    foreach (string file in Directory.GetFiles(this.folderBrowserDialog.SelectedPath, $"*.{fileExtension}", this.scanSubdirectoriesToolStripMenuItem.Checked ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly))
-                    {
-                        // Add current file
-                        this.samplesPathList.Add(file);
-                    }
-                }
-
-                // Set samples directory
-                this.settingsData.SamplesDirectory = this.folderBrowserDialog.SelectedPath;
-
-                // Get samples
-                this.GetSamples();
+                // Load directory samples
+                this.LoadDirectorySamples(this.folderBrowserDialog.SelectedPath);
             }
+        }
+
+        /// <summary>
+        /// Loads the directory samples.
+        /// </summary>
+        /// <param name="directory">Directory.</param>
+        private void LoadDirectorySamples(string directory)
+        {
+            // Clear lists
+            this.samplesListView.Items.Clear();
+
+            // Populate samples path list
+            foreach (var fileExtension in this.settingsData.FileExtensions.Split(','))
+            {
+                foreach (string file in Directory.GetFiles(directory, $"*.{fileExtension}", this.scanSubdirectoriesToolStripMenuItem.Checked ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly))
+                {
+                    // Add current file
+                    this.samplesPathList.Add(file);
+                }
+            }
+
+            // Set samples directory
+            this.settingsData.SamplesDirectory = directory;
+
+            // Get samples
+            this.GetSamples();
         }
 
         /// <summary>
@@ -640,7 +650,50 @@ namespace RandomSampler
         /// <param name="e">Event arguments.</param>
         private void OnFavoriteDirectoryContextMenuStripItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            // TODO Add code
+            // Switch clicked item
+            switch (e.ClickedItem.Name)
+            {
+                // Set
+                case "setFavoriteDirectoryToolStripMenuItem":
+
+                    // Set fav dir
+                    this.SetFavoriteDirectory();
+
+                    break;
+
+                // Clear
+                case "clearDirectoryToolStripMenuItem":
+
+                    // Clear setings data
+                    this.settingsData.FavoriteDirectory = string.Empty;
+
+                    // Advise user
+                    MessageBox.Show("Favorite directory cleared from settings data.", "Clear", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Sets the favorite directory.
+        /// </summary>
+        private void SetFavoriteDirectory()
+        {
+            // Set description
+            this.folderBrowserDialog.Description = "Set favorite directory";
+
+            // Reset selected path
+            this.folderBrowserDialog.SelectedPath = currentDirectory;
+
+            // Show folder browser dialog
+            if (this.folderBrowserDialog.ShowDialog() == DialogResult.OK && this.folderBrowserDialog.SelectedPath.Length > 0)
+            {
+                // Set on setings data
+                this.settingsData.FavoriteDirectory = this.folderBrowserDialog.SelectedPath;
+
+                // Load directory samples
+                this.LoadDirectorySamples(this.folderBrowserDialog.SelectedPath);
+            }
         }
 
         /// <summary>
