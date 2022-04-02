@@ -134,8 +134,8 @@ namespace RandomSampler
             this.allItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.favButton = new System.Windows.Forms.Button();
             this.favoriteDirectoryContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.clearDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setFavoriteDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuStrip.SuspendLayout();
             this.mainStatusStrip.SuspendLayout();
             this.mainTableLayoutPanel.SuspendLayout();
@@ -223,6 +223,7 @@ namespace RandomSampler
             this.exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
             this.exitToolStripMenuItem1.Size = new System.Drawing.Size(155, 22);
             this.exitToolStripMenuItem1.Text = "E&xit";
+            this.exitToolStripMenuItem1.Click += new System.EventHandler(this.OnExitToolStripMenuItemClick);
             // 
             // optionsToolStripMenuItem
             // 
@@ -679,20 +680,20 @@ namespace RandomSampler
                                     this.setFavoriteDirectoryToolStripMenuItem,
                                     this.clearDirectoryToolStripMenuItem});
             this.favoriteDirectoryContextMenuStrip.Name = "favoriteDirectoryContextMenuStrip";
-            this.favoriteDirectoryContextMenuStrip.Size = new System.Drawing.Size(184, 70);
+            this.favoriteDirectoryContextMenuStrip.Size = new System.Drawing.Size(184, 48);
             this.favoriteDirectoryContextMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.OnFavoriteDirectoryContextMenuStripItemClicked);
-            // 
-            // clearDirectoryToolStripMenuItem
-            // 
-            this.clearDirectoryToolStripMenuItem.Name = "clearDirectoryToolStripMenuItem";
-            this.clearDirectoryToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
-            this.clearDirectoryToolStripMenuItem.Text = "&Clear directory";
             // 
             // setFavoriteDirectoryToolStripMenuItem
             // 
             this.setFavoriteDirectoryToolStripMenuItem.Name = "setFavoriteDirectoryToolStripMenuItem";
             this.setFavoriteDirectoryToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.setFavoriteDirectoryToolStripMenuItem.Text = "&Set favorite directory";
+            // 
+            // clearDirectoryToolStripMenuItem
+            // 
+            this.clearDirectoryToolStripMenuItem.Name = "clearDirectoryToolStripMenuItem";
+            this.clearDirectoryToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.clearDirectoryToolStripMenuItem.Text = "&Clear directory";
             // 
             // MainForm
             // 
@@ -707,6 +708,8 @@ namespace RandomSampler
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RandomSampler";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnMainFormFormClosing);
+            this.Load += new System.EventHandler(this.OnMainFormLoad);
             this.mainMenuStrip.ResumeLayout(false);
             this.mainMenuStrip.PerformLayout();
             this.mainStatusStrip.ResumeLayout(false);

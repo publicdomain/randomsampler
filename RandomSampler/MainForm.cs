@@ -97,6 +97,8 @@ namespace RandomSampler
             this.scanSubdirectoriesToolStripMenuItem.Checked = this.settingsData.ScanSubdirectories;
             this.samplesNumericUpDown.Value = this.settingsData.Samples;
             this.sequentialSaveCheckBox.Checked = this.settingsData.SequentialSave;
+            this.oneclickPreviewToolStripMenuItem.Checked = this.settingsData.OneClickPreview;
+            this.loadLastDirectoryOnStartToolStripMenuItem.Checked = this.settingsData.LoadLastDirectoryOnStart;
 
             // Set topmost
             this.TopMost = this.settingsData.AlwaysOnTop;
@@ -625,7 +627,17 @@ namespace RandomSampler
         /// <param name="e">Event arguments.</param>
         private void OnFavButtonClick(object sender, EventArgs e)
         {
-            // TODO Add code
+            // Check for a fav dir
+            if (this.settingsData.FavoriteDirectory.Length > 0 && Directory.Exists(this.settingsData.FavoriteDirectory))
+            {
+                // Load directory samples
+                this.LoadDirectorySamples(this.settingsData.FavoriteDirectory);
+            }
+            else
+            {
+                // Set fav dir
+                this.SetFavoriteDirectory();
+            }
         }
 
         /// <summary>
@@ -802,16 +814,36 @@ namespace RandomSampler
         /// <param name="e">Event arguments.</param>
         private void OnMainFormFormClosing(object sender, FormClosingEventArgs e)
         {
-            // Set GUI
+            // Set settings data
             this.settingsData.AlwaysOnTop = this.alwaysOnTopToolStripMenuItem.Checked;
             this.settingsData.AddChecked = this.addcheckedToolStripMenuItem.Checked;
             this.settingsData.CheckOnClick = this.checkOnClickToolStripMenuItem.Checked;
             this.settingsData.ScanSubdirectories = this.scanSubdirectoriesToolStripMenuItem.Checked;
             this.settingsData.Samples = this.samplesNumericUpDown.Value;
             this.settingsData.SequentialSave = this.sequentialSaveCheckBox.Checked;
+            this.settingsData.OneClickPreview = this.oneclickPreviewToolStripMenuItem.Checked;
+            this.settingsData.LoadLastDirectoryOnStart = this.loadLastDirectoryOnStartToolStripMenuItem.Checked;
 
             // Save settings data to disk
             this.SaveSettingsFile(this.settingsDataPath, this.settingsData);
+        }
+
+        /// <summary>
+        /// Handles the main form load.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        private void OnMainFormLoad(object sender, EventArgs e)
+        {
+            // Topmost 
+            this.TopMost = this.settingsData.AlwaysOnTop;
+
+            // Load last folder
+            if (this.settingsData.LoadLastDirectoryOnStart)
+            {
+                // Load directory samples
+                this.LoadDirectorySamples(this.settingsData.SamplesDirectory);
+            }
         }
 
         /// <summary>

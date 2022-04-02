@@ -41,6 +41,19 @@ namespace PublicDomain
         public bool CheckOnClick { get; set; } = false;
 
         /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="T:PublicDomain.SettingsData"/> load last directory
+        /// on start.
+        /// </summary>
+        /// <value><c>true</c> if load last directory on start; otherwise, <c>false</c>.</value>
+        public bool LoadLastDirectoryOnStart { get; set; } = true;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="T:PublicDomain.SettingsData"/> one click preview.
+        /// </summary>
+        /// <value><c>true</c> if one click preview; otherwise, <c>false</c>.</value>
+        public bool OneClickPreview { get; set; } = true;
+
+        /// <summary>
         /// Gets or sets a value indicating whether this <see cref="T:PublicDomain.SettingsData"/> scan subdirectories.
         /// </summary>
         /// <value><c>true</c> if scan subdirectories; otherwise, <c>false</c>.</value>
