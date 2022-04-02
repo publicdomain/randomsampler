@@ -92,6 +92,8 @@ namespace RandomSampler
             this.alwaysOnTopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addcheckedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkOnClickToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadLastDirectoryOnStartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.oneclickPreviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scanSubdirectoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setFileExtensionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -130,12 +132,17 @@ namespace RandomSampler
             this.checkedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uncheckedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.allItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.favButton = new System.Windows.Forms.Button();
+            this.favoriteDirectoryContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.clearDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setFavoriteDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuStrip.SuspendLayout();
             this.mainStatusStrip.SuspendLayout();
             this.mainTableLayoutPanel.SuspendLayout();
             this.samplesTableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.samplesNumericUpDown)).BeginInit();
             this.samplesListViewContextMenuStrip.SuspendLayout();
+            this.favoriteDirectoryContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainMenuStrip
@@ -223,6 +230,8 @@ namespace RandomSampler
                                     this.alwaysOnTopToolStripMenuItem,
                                     this.addcheckedToolStripMenuItem,
                                     this.checkOnClickToolStripMenuItem,
+                                    this.loadLastDirectoryOnStartToolStripMenuItem,
+                                    this.oneclickPreviewToolStripMenuItem,
                                     this.scanSubdirectoriesToolStripMenuItem,
                                     this.setFileExtensionsToolStripMenuItem});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
@@ -233,7 +242,7 @@ namespace RandomSampler
             // alwaysOnTopToolStripMenuItem
             // 
             this.alwaysOnTopToolStripMenuItem.Name = "alwaysOnTopToolStripMenuItem";
-            this.alwaysOnTopToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.alwaysOnTopToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.alwaysOnTopToolStripMenuItem.Text = "&Always on top";
             // 
             // addcheckedToolStripMenuItem
@@ -241,27 +250,43 @@ namespace RandomSampler
             this.addcheckedToolStripMenuItem.Checked = true;
             this.addcheckedToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.addcheckedToolStripMenuItem.Name = "addcheckedToolStripMenuItem";
-            this.addcheckedToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.addcheckedToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.addcheckedToolStripMenuItem.Text = "Add &checked";
             // 
             // checkOnClickToolStripMenuItem
             // 
             this.checkOnClickToolStripMenuItem.Name = "checkOnClickToolStripMenuItem";
-            this.checkOnClickToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.checkOnClickToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.checkOnClickToolStripMenuItem.Text = "&Check on click";
+            // 
+            // loadLastDirectoryOnStartToolStripMenuItem
+            // 
+            this.loadLastDirectoryOnStartToolStripMenuItem.Checked = true;
+            this.loadLastDirectoryOnStartToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.loadLastDirectoryOnStartToolStripMenuItem.Name = "loadLastDirectoryOnStartToolStripMenuItem";
+            this.loadLastDirectoryOnStartToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.loadLastDirectoryOnStartToolStripMenuItem.Text = "&Load last directory on start";
+            // 
+            // oneclickPreviewToolStripMenuItem
+            // 
+            this.oneclickPreviewToolStripMenuItem.Checked = true;
+            this.oneclickPreviewToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.oneclickPreviewToolStripMenuItem.Name = "oneclickPreviewToolStripMenuItem";
+            this.oneclickPreviewToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.oneclickPreviewToolStripMenuItem.Text = "&One-click preview";
             // 
             // scanSubdirectoriesToolStripMenuItem
             // 
             this.scanSubdirectoriesToolStripMenuItem.Checked = true;
             this.scanSubdirectoriesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.scanSubdirectoriesToolStripMenuItem.Name = "scanSubdirectoriesToolStripMenuItem";
-            this.scanSubdirectoriesToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.scanSubdirectoriesToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.scanSubdirectoriesToolStripMenuItem.Text = "Scan s&ubdirectories";
             // 
             // setFileExtensionsToolStripMenuItem
             // 
             this.setFileExtensionsToolStripMenuItem.Name = "setFileExtensionsToolStripMenuItem";
-            this.setFileExtensionsToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.setFileExtensionsToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.setFileExtensionsToolStripMenuItem.Text = "&Set file extensions";
             // 
             // helpToolStripMenuItem
@@ -363,6 +388,7 @@ namespace RandomSampler
             this.mainTableLayoutPanel.Controls.Add(this.deleteButton, 1, 2);
             this.mainTableLayoutPanel.Controls.Add(this.samplesTableLayoutPanel, 0, 3);
             this.mainTableLayoutPanel.Controls.Add(this.samplesListView, 0, 1);
+            this.mainTableLayoutPanel.Controls.Add(this.favButton, 1, 0);
             this.mainTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainTableLayoutPanel.Location = new System.Drawing.Point(0, 24);
             this.mainTableLayoutPanel.Name = "mainTableLayoutPanel";
@@ -377,12 +403,11 @@ namespace RandomSampler
             // 
             // browseButton
             // 
-            this.mainTableLayoutPanel.SetColumnSpan(this.browseButton, 2);
             this.browseButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.browseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.browseButton.Location = new System.Drawing.Point(3, 3);
             this.browseButton.Name = "browseButton";
-            this.browseButton.Size = new System.Drawing.Size(313, 29);
+            this.browseButton.Size = new System.Drawing.Size(228, 29);
             this.browseButton.TabIndex = 0;
             this.browseButton.Text = "Browse for directory";
             this.browseButton.UseVisualStyleBackColor = true;
@@ -570,6 +595,7 @@ namespace RandomSampler
             this.samplesListView.TabIndex = 8;
             this.samplesListView.UseCompatibleStateImageBehavior = false;
             this.samplesListView.View = System.Windows.Forms.View.Details;
+            this.samplesListView.SelectedIndexChanged += new System.EventHandler(this.OnSamplesListViewSelectedIndexChanged);
             // 
             // samplesColumnHeader
             // 
@@ -584,25 +610,25 @@ namespace RandomSampler
                                     this.toggleCheckToolStripMenuItem,
                                     this.deleteToolStripMenuItem});
             this.samplesListViewContextMenuStrip.Name = "randomItemsListContextMenuStrip";
-            this.samplesListViewContextMenuStrip.Size = new System.Drawing.Size(153, 114);
+            this.samplesListViewContextMenuStrip.Size = new System.Drawing.Size(146, 92);
             this.samplesListViewContextMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.OnSamplesListViewContextMenuStripItemClicked);
             // 
             // checkAllToolStripMenuItem
             // 
             this.checkAllToolStripMenuItem.Name = "checkAllToolStripMenuItem";
-            this.checkAllToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.checkAllToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.checkAllToolStripMenuItem.Text = "&Check all";
             // 
             // uncheckAllToolStripMenuItem
             // 
             this.uncheckAllToolStripMenuItem.Name = "uncheckAllToolStripMenuItem";
-            this.uncheckAllToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.uncheckAllToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.uncheckAllToolStripMenuItem.Text = "&Uncheck all";
             // 
             // toggleCheckToolStripMenuItem
             // 
             this.toggleCheckToolStripMenuItem.Name = "toggleCheckToolStripMenuItem";
-            this.toggleCheckToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.toggleCheckToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.toggleCheckToolStripMenuItem.Text = "&Toggle check";
             // 
             // deleteToolStripMenuItem
@@ -612,27 +638,61 @@ namespace RandomSampler
                                     this.uncheckedToolStripMenuItem,
                                     this.allItemsToolStripMenuItem});
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.deleteToolStripMenuItem.Text = "&Delete";
             this.deleteToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.OnDeleteToolStripMenuItemDropDownItemClicked);
             // 
             // checkedToolStripMenuItem
             // 
             this.checkedToolStripMenuItem.Name = "checkedToolStripMenuItem";
-            this.checkedToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.checkedToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.checkedToolStripMenuItem.Text = "&Checked";
             // 
             // uncheckedToolStripMenuItem
             // 
             this.uncheckedToolStripMenuItem.Name = "uncheckedToolStripMenuItem";
-            this.uncheckedToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.uncheckedToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.uncheckedToolStripMenuItem.Text = "&Unchecked";
             // 
             // allItemsToolStripMenuItem
             // 
             this.allItemsToolStripMenuItem.Name = "allItemsToolStripMenuItem";
-            this.allItemsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.allItemsToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.allItemsToolStripMenuItem.Text = "&All items";
+            // 
+            // favButton
+            // 
+            this.favButton.ContextMenuStrip = this.favoriteDirectoryContextMenuStrip;
+            this.favButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.favButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.favButton.Location = new System.Drawing.Point(237, 3);
+            this.favButton.Name = "favButton";
+            this.favButton.Size = new System.Drawing.Size(79, 29);
+            this.favButton.TabIndex = 0;
+            this.favButton.Text = "&Fav";
+            this.favButton.UseVisualStyleBackColor = true;
+            this.favButton.Click += new System.EventHandler(this.OnFavButtonClick);
+            // 
+            // favoriteDirectoryContextMenuStrip
+            // 
+            this.favoriteDirectoryContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+                                    this.setFavoriteDirectoryToolStripMenuItem,
+                                    this.clearDirectoryToolStripMenuItem});
+            this.favoriteDirectoryContextMenuStrip.Name = "favoriteDirectoryContextMenuStrip";
+            this.favoriteDirectoryContextMenuStrip.Size = new System.Drawing.Size(184, 70);
+            this.favoriteDirectoryContextMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.OnFavoriteDirectoryContextMenuStripItemClicked);
+            // 
+            // clearDirectoryToolStripMenuItem
+            // 
+            this.clearDirectoryToolStripMenuItem.Name = "clearDirectoryToolStripMenuItem";
+            this.clearDirectoryToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.clearDirectoryToolStripMenuItem.Text = "&Clear directory";
+            // 
+            // setFavoriteDirectoryToolStripMenuItem
+            // 
+            this.setFavoriteDirectoryToolStripMenuItem.Name = "setFavoriteDirectoryToolStripMenuItem";
+            this.setFavoriteDirectoryToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.setFavoriteDirectoryToolStripMenuItem.Text = "&Set favorite directory";
             // 
             // MainForm
             // 
@@ -655,9 +715,16 @@ namespace RandomSampler
             this.samplesTableLayoutPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.samplesNumericUpDown)).EndInit();
             this.samplesListViewContextMenuStrip.ResumeLayout(false);
+            this.favoriteDirectoryContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+        private System.Windows.Forms.ToolStripMenuItem setFavoriteDirectoryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clearDirectoryToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip favoriteDirectoryContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem loadLastDirectoryOnStartToolStripMenuItem;
+        private System.Windows.Forms.Button favButton;
+        private System.Windows.Forms.ToolStripMenuItem oneclickPreviewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem allItemsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uncheckedToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem checkedToolStripMenuItem;

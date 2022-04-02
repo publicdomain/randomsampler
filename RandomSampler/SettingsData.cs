@@ -68,6 +68,12 @@ namespace PublicDomain
         /// Gets or sets the samples directory.
         /// </summary>
         /// <value>The samples directory.</value>
-        public string samplesDirectory { get; set; } = string.Empty;
+        public string SamplesDirectory { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Gets or sets the favorite directory.
+        /// </summary>
+        /// <value>The favorite directory.</value>
+        public string FavoriteDirectory { get; set; } = string.Empty;
     }
 }

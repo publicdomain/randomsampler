@@ -132,7 +132,7 @@ namespace RandomSampler
                 }
 
                 // Set samples directory
-                this.settingsData.samplesDirectory = this.folderBrowserDialog.SelectedPath;
+                this.settingsData.SamplesDirectory = this.folderBrowserDialog.SelectedPath;
 
                 // Get samples
                 this.GetSamples();
@@ -606,6 +606,41 @@ namespace RandomSampler
         {
             // Open GitHub repository
             Process.Start("https://github.com/publicdomain/randomsampler");
+        }
+
+        /// <summary>
+        /// Handles the fav button click.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        private void OnFavButtonClick(object sender, EventArgs e)
+        {
+            // TODO Add code
+        }
+
+        /// <summary>
+        /// Handles the samples list view selected index changed.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        private void OnSamplesListViewSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Check if must auto-preview
+            if (this.oneclickPreviewToolStripMenuItem.Checked)
+            {
+                // Hit preview button
+                this.previewButton.PerformClick();
+            }
+        }
+
+        /// <summary>
+        /// Handles the favorite directory context menu strip item clicked.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        private void OnFavoriteDirectoryContextMenuStripItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            // TODO Add code
         }
 
         /// <summary>
